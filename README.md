@@ -26,7 +26,7 @@ run application
 $  python app.py
 ```
  
-![alt text](http://localhost:9090/v1.0/ui/ "Swagger UI")  
+[Swagger UI](http://localhost:9090/v1.0/ui/)
 
 ## curl
 
