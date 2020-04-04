@@ -1,0 +1,97 @@
+swagger: "2.0"
+
+info:
+  title: "Items API"
+  version: "1.0"
+
+basePath: /v1.0
+
+paths:
+  /items/:
+    get:
+      tags: [Items]
+      summary: 'Get all items'
+      operationId: api.items.get_all
+      responses:
+        '200':
+          description: 'Get all items'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Item'
+
+    post:
+      tags: [Items]
+      operationId: api.items.insert
+      summary: Create na item
+      parameters:
+        - name: item
+          in: body
+          schema:
+            $ref: '#/definitions/Item'
+      responses:
+        200:
+          description: New item created
+          
+  /items/{item_id}:
+    get:
+      tags: [Items]
+      summary: 'Get item by ID'
+      operationId: api.items.get_by_id
+      parameters:
+        - $ref: '#/parameters/item_id'
+      responses:
+        200:
+          description: Return item
+          schema:
+            $ref: '#/definitions/Item'
+        404:
+          description: Item does not exist
+
+    put:
+      tags: [Items]
+      summary: 'Update and item'
+      operationId: api.items.update
+      parameters:
+        - $ref: '#/parameters/item_id'
+        - name: item
+          in: body
+          schema:
+            $ref: '#/definitions/Item'
+      responses:
+        200:
+          description: Item updated
+          schema:
+            $ref: '#/definitions/Item'
+        404:
+          description: Item does not exist
+      
+    delete:
+      tags: [Items]
+      operationId: api.items.delete
+      summary: Remove an item
+      parameters:
+        - $ref: '#/parameters/item_id'
+      responses:
+        204:
+          description: Item deleted
+        404:
+          description: Item does not exist
+
+parameters:
+  item_id:
+    name: item_id
+    description: Item's Unique identifier
+    in: path
+    type: string
+    required: true
+    pattern: "^[a-zA-Z0-9-]+$"
+
+definitions:
+  Item:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name: { type: string }

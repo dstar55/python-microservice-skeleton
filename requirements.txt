@@ -1,0 +1,11 @@
+Flask
+connexion
+swagger-ui-bundle
+#pip install "connexion[swagger-ui]"
+sqlalchemy
+Flask-SQLAlchemy
+flask-marshmallow 
+marshmallow-sqlalchemy 
+marshmallow
+#Flask-Injector
+fastavro
